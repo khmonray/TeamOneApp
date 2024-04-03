@@ -11,6 +11,7 @@
 	<groupId>one.team</groupId>
 	<artifactId>TeamOneApp</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
 	<name>TeamOneApp</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
@@ -22,11 +23,6 @@
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
-
-		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<scope>runtime</scope>
@@ -34,11 +30,6 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
@@ -56,5 +47,12 @@
 			</plugin>
 		</plugins>
 	</build>
+
+	<modules>
+		<module>business-logic</module>
+		<module>statistics</module>
+		<module>authorization</module>
+		<module>payments</module>
+	</modules>
 
 </project>
