@@ -1,6 +1,7 @@
 package one.team.statistics.service;
 
 import com.google.gson.JsonObject;
+import java.util.List;
 import one.team.error.NotFoundException;
 import one.team.client.ApiClient;
 import one.team.dto.request.NewStatDto;
@@ -18,6 +19,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.test.context.ActiveProfiles;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -66,17 +68,13 @@ class StatsServiceImplTest {
 
     @Test
     void addStat_whenAddStatForJavaCourse_thenStatAdded() {
-//        innerObject.addProperty("id", 2);
-//        innerObject.addProperty("name", "java");
-//        innerObject.addProperty("price", 100000);
-//
-//        when(mockStatsMapper.toStatDto(stat)).thenReturn(statDto);
-//        when(mockStatsRepository.save(any())).thenReturn(stat);
-//        when(mockClient.getCoursesById(any())).thenReturn(String.valueOf(innerObject));
-//
-//        statsService.createStat(newStatDto);
-//
-//        verify(mockStatsRepository, times(1)).save(any());
+        when(mockStatsMapper.toStatDto(stat)).thenReturn(statDto);
+        when(mockStatsRepository.save(any())).thenReturn(stat);
+        when(mockClient.getCoursesById(any())).thenReturn(courseDto);
+
+        statsService.createStat(newStatDto);
+
+        verify(mockStatsRepository, times(1)).save(any());
     }
 
     @Test
@@ -100,17 +98,13 @@ class StatsServiceImplTest {
 
     @Test
     void getStat_whenStatForJavaCourse_thenStatFound() {
-//        innerObject.addProperty("id", 2);
-//        innerObject.addProperty("name", "java");
-//        innerObject.addProperty("price", 100000);
-//
-//        when(mockStatsMapper.toStatDto(List.of(stat))).thenReturn(List.of(statDto));
-//        when(mockClient.getCoursesById(any())).thenReturn(String.valueOf(innerObject));
-//        when(mockStatsRepository.findAll(any(Sort.class))).thenReturn(List.of(stat));
-//
-//        List<StatDto> actual = statsService.getStats();
-//
-//        assertEquals(List.of(statDto), actual);
+        when(mockStatsMapper.toStatDto(List.of(stat))).thenReturn(List.of(statDto));
+        when(mockClient.getCoursesById(any())).thenReturn(courseDto);
+        when(mockStatsRepository.findAll(any(Sort.class))).thenReturn(List.of(stat));
+
+        List<StatDto> actual = statsService.getStats();
+
+        assertEquals(List.of(statDto), actual);
     }
 
 }

@@ -61,35 +61,26 @@ class StatsControllerTest {
     @Test
     @SneakyThrows
     void addStats() {
-//        final JsonObject innerObject = new JsonObject();
-//            innerObject.addProperty("id", 1);
-//            innerObject.addProperty("name", "java");
-//            innerObject.addProperty("price", 100000);
-//        when(client.getCoursesById(anyLong())).thenReturn(String.valueOf(innerObject));
-//        when(client.getCoursesById(anyLong())).thenReturn(String.valueOf(innerObject));
-//        doNothing().when(service).createStat(any(NewStatDto.class));
-//
-//        mockMvc.perform(post("/stats")
-//                        .accept(MediaType.APPLICATION_JSON)
-//                        .contentType(MediaType.APPLICATION_JSON_VALUE)
-//                        .content(objectMapper.writeValueAsString(newStatDto)))
-//                .andExpect(status().isCreated());
+        when(client.getCoursesById(anyLong())).thenReturn(courseDto);
+        doNothing().when(service).createStat(any(NewStatDto.class));
+
+        mockMvc.perform(post("/stats")
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON_VALUE)
+                        .content(objectMapper.writeValueAsString(newStatDto)))
+                .andExpect(status().isCreated());
     }
 
     @Test
     @SneakyThrows
     void getStats() {
-//        final JsonObject innerObject = new JsonObject();
-//        innerObject.addProperty("id", 1);
-//        innerObject.addProperty("name", "java");
-//        innerObject.addProperty("price", 100000);
-//        when(client.getCoursesById(anyLong())).thenReturn(String.valueOf(innerObject));
-//        when(service.getStats()).thenReturn(List.of(statDto));
-//
-//        mockMvc.perform(get("/stats")
-//                        .contentType(MediaType.APPLICATION_JSON)
-//                        .accept(MediaType.APPLICATION_JSON))
-//                .andExpect(status().isOk());
+        when(client.getCoursesById(anyLong())).thenReturn(courseDto);
+        when(service.getStats()).thenReturn(List.of(statDto));
+
+        mockMvc.perform(get("/stats")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
     }
 
 }
