@@ -1,0 +1,54 @@
+version: '3.1'
+services:
+  business-logic:
+    build: business-logic
+    image: business-logic
+    container_name: business-logic
+    ports:
+      - "9090:9090"
+    depends_on:
+      - courses-db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://courses-db:5432/courses_db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+
+  courses-db:
+    image: postgres:14-alpine
+    container_name: courses-db
+    volumes:
+      - /var/lib/postgresql/data/
+    ports:
+      - "6541:5432"
+    environment:
+      - POSTGRES_DB=courses_db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+
+
+  statistics:
+    build: statistics
+    image: statistics
+    container_name: statistics
+    ports:
+      - "9091:9091"
+    depends_on:
+      - stats-db
+      - business-logic
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://stats-db:5432/stats_db
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+
+
+  stats-db:
+    image: postgres:14-alpine
+    container_name: stats-db
+    volumes:
+      - /var/lib/postgresql/data/
+    ports:
+      - "6542:5432"
+    environment:
+      - POSTGRES_DB=stats_db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
