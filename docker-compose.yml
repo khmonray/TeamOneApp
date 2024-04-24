@@ -1,0 +1,80 @@
+version: '3.1'
+services:
+  statistics:
+    build: statistics
+    image: statistics
+    container_name: statistics
+    ports:
+      - "9091:9091"
+    depends_on:
+      - stats-db
+      - business-logic
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://stats-db:5432/stats_db
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+
+  stats-db:
+    image: postgres:14-alpine
+    container_name: stats-db
+    volumes:
+      - /var/lib/postgresql/data/
+    ports:
+      - "6541:5432"
+    environment:
+      - POSTGRES_DB=stats_db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+
+  business-logic:
+    build: business-logic
+    image: business-logic
+    container_name: business-logic
+    ports:
+      - "9093:9093"
+    depends_on:
+      - one_team
+#      - payments
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://one_team:5432/one_team
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+
+  one_team:
+    image: postgres:14-alpine
+    container_name: one_team
+    volumes:
+      - /var/lib/postgresql/data/
+    ports:
+      - "6542:5432"
+    environment:
+      - POSTGRES_DB=one_team
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+
+  payments:
+    build: payments
+    image: payments
+    container_name: payments
+    ports:
+      - "9092:9092"
+    depends_on:
+      - order_db
+      - business-logic
+      - statistics
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://order_db:5432/order_db
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+
+  order_db:
+    image: postgres:14-alpine
+    container_name: order_db
+    volumes:
+      - /var/lib/postgresql/data/
+    ports:
+      - "6543:5432"
+    environment:
+      - POSTGRES_DB=order_db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
