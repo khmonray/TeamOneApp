@@ -3,7 +3,7 @@ package one.team.statistics.service;
 import com.google.gson.JsonObject;
 import java.util.List;
 import one.team.error.NotFoundException;
-import one.team.client.ApiClient;
+import one.team.client.CourseServiceClient;
 import one.team.dto.request.NewStatDto;
 import one.team.dto.response.CourseDto;
 import one.team.dto.response.StatDto;
@@ -37,7 +37,7 @@ class StatsServiceImplTest {
     private StatsRepository mockStatsRepository;
 
     @Mock
-    private ApiClient mockClient;
+    private CourseServiceClient mockClient;
 
     @Mock
     private StatsMapper mockStatsMapper;

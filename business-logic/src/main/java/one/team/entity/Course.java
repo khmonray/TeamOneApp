@@ -1,4 +1,4 @@
-package one.team.model;
+package one.team.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -8,28 +8,22 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.ToString.Exclude;
+import lombok.Setter;
 
-@Data
-@Entity
-@Builder
-@NoArgsConstructor
+@Setter
+@Getter
 @AllArgsConstructor
-@Table(name = "order_db")
-public class OrderStatus {
+@NoArgsConstructor
+@Builder
+@Entity
+@Table(name = "courses")
+public class Course {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    private Long courseId;
-
-    private boolean isPaid;
-
-    private String confirmationLink;
-
-    private String userEmail;
-
-    //TODO бобавить userid
-
+    private String name;
+    private int price;
 }

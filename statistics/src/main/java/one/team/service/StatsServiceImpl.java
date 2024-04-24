@@ -4,7 +4,7 @@ import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import one.team.error.NotFoundException;
-import one.team.client.ApiClient;
+import one.team.client.CourseServiceClient;
 import one.team.dto.request.NewStatDto;
 import one.team.dto.response.CourseDto;
 import one.team.dto.response.StatDto;
@@ -25,7 +25,7 @@ public class StatsServiceImpl implements StatsService {
 
     private final StatsMapper statsMapper;
 
-    private final ApiClient client;
+    private final CourseServiceClient client;
 
     @Transactional
     @Override

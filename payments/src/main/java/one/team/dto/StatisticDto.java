@@ -1,4 +1,4 @@
 package one.team.dto;
 
-public record StatisticDto(String courseName, boolean isPaid, String email) {
+public record StatisticDto(Long courseId) {
 }

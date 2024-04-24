@@ -1,26 +1,23 @@
 package one.team.controller;
 
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import one.team.dto.OrderDto;
 import one.team.service.PaymentService;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
 @RestController
 @RequestMapping("/payments")
-@NoArgsConstructor
 @AllArgsConstructor
 public class HelloController {
 
-    @Autowired
-    private PaymentService paymentService;
+    private final PaymentService paymentService;
 
     @PostMapping("/payment/process")
-    public void processPayment(@RequestBody OrderDto orderDto) {
-        paymentService.processPayment(orderDto);
+    public ResponseEntity<String>processPayment(@RequestBody OrderDto orderDto) {
+        return ResponseEntity.ok(paymentService.processPayment(orderDto));
     }
 
     @GetMapping("/confirm/{uuid}")

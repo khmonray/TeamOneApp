@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-//@FeignClient(name = "business-logic", url = "http://business-logic:9090")
-@FeignClient(name = "business-logic", url = "http://localhost:9090")
-public interface ApiClient {
+//@FeignClient(name = "business-logic3", url = "http://business-logic:9093")
+@FeignClient(name = "business-logic3", url = "http://localhost:9093")
+public interface CourseServiceClient {
 
   @RequestMapping(method = RequestMethod.GET, value = "/courses/{id}")
   CourseDto getCoursesById(@PathVariable Long id);

@@ -24,7 +24,7 @@ public class StatsController {
 
   @PostMapping("/stats")
   @ResponseStatus(value = HttpStatus.CREATED)
-  public void createHit(@RequestBody NewStatDto newStatDto) throws NotFoundException {
+  public void createStats(@RequestBody NewStatDto newStatDto) throws NotFoundException {
     log.info("Получен POST-запрос к эндпоинту: '/stats'");
     statsService.createStat(newStatDto);
   }

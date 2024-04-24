@@ -1,11 +1,10 @@
 package one.team.statistics.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.JsonObject;
 import java.util.List;
 import lombok.SneakyThrows;
 import one.team.StatsServerApp;
-import one.team.client.ApiClient;
+import one.team.client.CourseServiceClient;
 import one.team.controller.StatsController;
 import one.team.dto.request.NewStatDto;
 import one.team.dto.response.CourseDto;
@@ -38,7 +37,7 @@ class StatsControllerTest {
     private MockMvc mockMvc;
 
     @MockBean
-    private ApiClient client;
+    private CourseServiceClient client;
 
     @MockBean
     private StatsService service;

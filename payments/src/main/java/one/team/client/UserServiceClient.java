@@ -1,4 +1,4 @@
-package one.team.feign;
+package one.team.client;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
